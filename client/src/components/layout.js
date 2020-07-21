@@ -8,8 +8,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import styled from '@emotion/styled'
+
 import './style.scss';
+import styled from '@emotion/styled'
 
 const Layout = ({ children }) => (
   <StyledLayout>
@@ -18,9 +19,8 @@ const Layout = ({ children }) => (
       <footer className="footer">
         <div className="container">
           <p className="is-size-6">
-            <a href='https://explorer.havenprotocol.org/supply'>XHV Supply data</a> | Pricing data by <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>
+            XHV Supply data from <a href='https://explorer.havenprotocol.org/supply'>Explorer</a> | Pricing data by <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>
           </p>
-
         </div>
 
       </footer>
@@ -29,15 +29,16 @@ const Layout = ({ children }) => (
 )
 
 const StyledLayout = styled('div')`
-  background: #222;
+  background: #36393f;
   color: #fff;
+
   footer{
-    p
+    margin-top: 100px;
     color: #fff;
-    background: #000;
+    background: #26282B;;
     a{
       color: #fff;
-      font-weight: 500;
+      font-weight: 700;
     }
   }
 
