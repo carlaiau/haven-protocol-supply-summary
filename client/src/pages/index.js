@@ -14,9 +14,7 @@ const IndexPage = () => {
     style: 'currency',
     currency: 'USD',
   });
-
-  useEffect(() => {
-
+  const getData = () => {
     Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=haven&vs_currencies=usd%2Cbtc'),
       fetch('http://ec2-13-211-215-195.ap-southeast-2.compute.amazonaws.com:8080/')
@@ -31,6 +29,11 @@ const IndexPage = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+  useEffect(() => {
+    getData()
+    const interval = setInterval(() => { getData() }, 30000);
+    return () => clearInterval(interval)
   }, [])
 
 
@@ -55,13 +58,13 @@ const IndexPage = () => {
         <StyledHome className="container">
           <div className="columns">
             <div className="column">
-              <p className="is-size-2">
-                XHV Unit Price
-              </p>
+              <h1 className="is-size-2">
+                XHV Unit Pricing
+              </h1>
             </div>
           </div>
 
-          <table className="table big">
+          <table className="table big is-size-1">
             <tbody>
               <tr>
                 <td>
@@ -77,7 +80,13 @@ const IndexPage = () => {
               </tr>
             </tbody>
           </table>
-
+          <div className="columns">
+            <div className="column">
+              <h2 className="is-size-2">
+                Current Ecosystem
+              </h2>
+            </div>
+          </div>
           <table className="table">
             <thead>
               <tr>
@@ -133,11 +142,15 @@ const IndexPage = () => {
             </tbody>
 
           </table>
-          <div className="columns">
-            <div className="column">
-              <p className="is-size-6" style={{ marginTop: '50px' }}>
-                Data is pulled from Haven's block explorer and combined with CoinGecko's current USD/XHV rate.
+          <div className="columns" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="column is-half">
+              <p className="is-size-6" style={{ marginTop: '30px' }}>
+                Data is pulled from Haven's <a href="https://explorer.havenprotocol.org/supply">block explorer</a> and <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>.
               </p>
+              <p className="is-size-6">This page automatically fetches new data every 30 seconds.</p>
+
+              <p className="is-size-6">This was not created by the core XHV team and is a work in progress. Open to collaborations and feedback.</p>
+              <p className="is-size-1" style={{ marginTop: '20px' }}>🚀</p>
             </div>
           </div>
 
@@ -149,12 +162,16 @@ const IndexPage = () => {
 }
 
 const StyledHome = styled('div')`
+background-image: url('https://havenprotocol.org/wp-content/themes/havenprotocol/css/imgs/map.png');
+
+background-repeat: no-repeat;
+background-position: 50% 50%;
+min-height: 100vh;
+padding-top: 120px;
+    @media screen and (min-width: 421px){
+        padding-top: 150px;
+    }
 text-align: center;
-img{
-            margin: auto;
-  max-width: 300px;
-  width: 80%
-}
 
 table{
   background: none;
@@ -207,15 +224,17 @@ table{
     }
   }
   &.big{
-    td{
-      font-size: 2em;
-    }
     strong{
-      color: #7289da;
-      
+      color: #7289da;      
     }
   }
-  
+}
+  .columns{
+    @media screen and (max-width: 420px){
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }
 `
 export default IndexPage

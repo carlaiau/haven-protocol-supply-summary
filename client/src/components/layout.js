@@ -22,21 +22,8 @@ const Layout = ({ children }) => (
 )
 
 const StyledLayout = styled('div')`
-  background: #36393f;
+  background-color: #26282c;
   color: #fff;
-  main{
-    padding-bottom: 100px;
-  }
-  footer{
-    margin-top: 100px;
-    color: #fff;
-    background: #26282B;;
-    a{
-      color: #fff;
-      font-weight: 700;
-    }
-  }
-
 `
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

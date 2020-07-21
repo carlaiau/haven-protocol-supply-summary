@@ -29,6 +29,15 @@ module.exports = {
         icon: `src/images/square.svg`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `playfair display\:300,400,400i,700`,
+          'inter\:400'
+        ],
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

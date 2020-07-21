@@ -4,9 +4,22 @@
 @import '~bulma/bulma.sass';
 
 html, body{
-    background: #26282B!important;
+    background: #36393f;
+    a{
+        color: #7289da;
+        &:hover{
+            color: #5470d2;
+        }
+    }
+}
+body, button, input, select, textarea{
+    font-family: 'Inter', sans-serif;
 }
 
+h1, h2, h3{
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
 @media screen and (max-width: 420px){
     html{
         font-size: 11px;

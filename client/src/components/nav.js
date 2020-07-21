@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import github from '../images/github.svg'
 import twitter from '../images/twitter.svg'
 export default () => (
-    <StyledNav className="navbar is-dark">
+    <StyledNav className="navbar is-dark is-fixed-top">
         <div className="container">
             <div className="navbar-menu">
                 <div class="navbar-brand">
@@ -17,7 +17,7 @@ export default () => (
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             <p className="control">
-                                <a className="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://xusd.live" target="_blank" href="https://twitter.com/intent/tweet?text=Haven Protocol Ecosystem Summary&amp;hashtags=XHV,xUSD&amp;url=https://xusd.live&amp;via=carlaiau">
+                                <a className="button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://xusd.live" target="_blank" href="https://twitter.com/intent/tweet?text=Haven Protocol Ecosystem Summary&amp;hashtags=XHV,xUSD&amp;url=https://xusd.live&amp;via=carlaiau">
                                     <span className="icon">
                                         <img src={twitter} />
                                     </span>
@@ -27,11 +27,11 @@ export default () => (
                                 </a>
                             </p>
                             <p className="control">
-                                <a className="bd-tw-button button" href="https://github.com/carlaiau/xAsset-Supply">
+                                <a className="button" href="https://github.com/carlaiau/xAsset-Supply">
                                     <span className="icon">
                                         <img src={github} />
                                     </span>
-                                    <span>Download</span>
+                                    <span>Contribute</span>
                                 </a>
                             </p>
                         </div>
@@ -43,7 +43,7 @@ export default () => (
 )
 
 const StyledNav = styled('nav')`
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 960px){
         .navbar-menu{
             display: flex;
             align-items: center;
@@ -57,16 +57,14 @@ const StyledNav = styled('nav')`
         }
         .navbar-end{
             float: right;
+            padding-right: 20px;
         }
-        margin-bottom: 20px;
     }
     
-    @media screen and (min-width: 421px){
-        margin-bottom: 100px;
-    }
+    
     padding: 5px 0;
     &.is-dark{
-                background: #26282B;
+                background: #222;
     }
     .navbar-brand img{
         max-height: initial;
