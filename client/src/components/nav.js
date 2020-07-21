@@ -17,7 +17,7 @@ export default () => (
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             <p className="control">
-                                <a className="button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://xusd.live" target="_blank" href="https://twitter.com/intent/tweet?text=Haven Protocol Supply Summary&amp;hashtags=XHV,xUSD&amp;url=http://xusd.live&amp;via=carlaiau">
+                                <a className="button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://xusd.live" target="_blank" href="https://twitter.com/intent/tweet?text=Haven Protocol Supply Summary&amp;hashtags=XHV,xUSD&amp;url=http://xusd.live&amp;via=HavenXHV">
                                     <span className="icon">
                                         <img src={twitter} />
                                     </span>
