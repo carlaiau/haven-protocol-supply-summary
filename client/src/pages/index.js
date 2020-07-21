@@ -17,7 +17,7 @@ const IndexPage = () => {
   const getData = () => {
     Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=haven&vs_currencies=usd%2Cbtc'),
-      fetch('http://ec2-13-211-215-195.ap-southeast-2.compute.amazonaws.com:8080/')
+      fetch('http://server.xusd.live:8080/')
     ]).then(async ([gecko, ec2]) => {
       const a = await gecko.json();
       const b = await ec2.json();
