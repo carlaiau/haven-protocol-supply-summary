@@ -37,7 +37,7 @@ module.exports = {
           'inter\:400'
         ],
       }
-    }
+    },
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
