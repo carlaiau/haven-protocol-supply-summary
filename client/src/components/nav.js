@@ -47,7 +47,6 @@ const StyledNav = styled('nav')`
         .navbar-menu{
             display: flex;
             align-items: center;
-            display: inline-block;
             background: none;
             width: 100%;
             
@@ -57,7 +56,6 @@ const StyledNav = styled('nav')`
         }
         .navbar-end{
             float: right;
-            padding-right: 20px;
         }
     }
     

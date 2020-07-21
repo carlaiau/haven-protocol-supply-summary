@@ -227,6 +227,9 @@ table{
     strong{
       color: #7289da;      
     }
+    @media screen and (max-width: 420px){
+      font-size: 1.5em !important;
+    }
   }
 }
   .columns{
