@@ -19,7 +19,7 @@ const IndexPage = () => {
 
     Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=haven&vs_currencies=usd%2Cbtc'),
-      fetch('https://backend.xusd.live:8080/')
+      fetch('http://ec2-13-211-215-195.ap-southeast-2.compute.amazonaws.com:8080/')
     ]).then(async ([gecko, ec2]) => {
       const a = await gecko.json();
       const b = await ec2.json();
@@ -53,9 +53,32 @@ const IndexPage = () => {
 
 
         <StyledHome className="container">
+          <div className="columns">
+            <div className="column">
+              <p className="is-size-2">
+                XHV Unit Price
+              </p>
+            </div>
+          </div>
 
+          <table className="table big">
+            <tbody>
+              <tr>
+                <td>
+                  <strong>
+                    {price.haven.usd}
+                  </strong> USD
+                </td>
+                <td>
+                  <strong>
+                    {price.haven.btc}
+                  </strong> BTC
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          <table className="table is-bordered">
+          <table className="table">
             <thead>
               <tr>
               </tr>
@@ -110,7 +133,13 @@ const IndexPage = () => {
             </tbody>
 
           </table>
-
+          <div className="columns">
+            <div className="column">
+              <p className="is-size-6" style={{ marginTop: '50px' }}>
+                Data is pulled from Haven's block explorer and combined with CoinGecko's current USD/XHV rate.
+              </p>
+            </div>
+          </div>
 
         </StyledHome>
 
@@ -122,7 +151,7 @@ const IndexPage = () => {
 const StyledHome = styled('div')`
 text-align: center;
 img{
-  margin: auto;
+            margin: auto;
   max-width: 300px;
   width: 80%
 }
@@ -141,19 +170,19 @@ table{
     text-align: left !important;
   }
   thead{
-    th{
+            th{
       &:nth-child(2),
       &:nth-child(3),
       &:nth-child(4){
-        border-top: 1px solid #fff;
+            border-top: 1px solid #fff;
         border-bottom: 1px solid #fff;
         background: #222;
       }
       &:nth-child(2){
-        border-left: 1px solid #fff;
+            border-left: 1px solid #fff;
       }
       &:nth-child(4){
-        border-right: 1px solid #fff;
+            border-right: 1px solid #fff;
       }
     }
   }
@@ -166,18 +195,27 @@ table{
 
     tr{
       &:nth-child(1) {
-        th{
+          th{
           border-top: 1px solid #fff;
         }
       }
       &:nth-child(3) {
-        th{
-          border-bottom: 1px solid #fff;
+            th{
+            border-bottom: 1px solid #fff;
         }
       }
     }
-    
   }
+  &.big{
+    td{
+      font-size: 2em;
+    }
+    strong{
+      color: #7289da;
+      
+    }
+  }
+  
 }
 `
 export default IndexPage

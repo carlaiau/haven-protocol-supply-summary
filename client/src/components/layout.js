@@ -16,14 +16,7 @@ const Layout = ({ children }) => (
   <StyledLayout>
     <div>
       <main>{children}</main>
-      <footer className="footer">
-        <div className="container">
-          <p className="is-size-6">
-            XHV Supply data from <a href='https://explorer.havenprotocol.org/supply'>Explorer</a> | Pricing data by <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>
-          </p>
-        </div>
 
-      </footer>
     </div>
   </StyledLayout>
 )
@@ -31,7 +24,9 @@ const Layout = ({ children }) => (
 const StyledLayout = styled('div')`
   background: #36393f;
   color: #fff;
-
+  main{
+    padding-bottom: 100px;
+  }
   footer{
     margin-top: 100px;
     color: #fff;
