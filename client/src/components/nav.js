@@ -43,7 +43,27 @@ export default () => (
 )
 
 const StyledNav = styled('nav')`
-    margin-bottom: 100px;
+    @media screen and (max-width: 768px){
+        .navbar-menu{
+            display: flex;
+            align-items: center;
+            display: inline-block;
+            background: none;
+            width: 100%;
+            
+        }
+        .navbar-brand{
+            float: left;
+        }
+        .navbar-end{
+            float: right;
+        }
+        margin-bottom: 20px;
+    }
+    
+    @media screen and (min-width: 421px){
+        margin-bottom: 100px;
+    }
     padding: 5px 0;
     &.is-dark{
                 background: #26282B;
