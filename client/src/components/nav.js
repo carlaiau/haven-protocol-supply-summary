@@ -27,7 +27,7 @@ export default () => (
                                 </a>
                             </p>
                             <p className="control">
-                                <a className="button" href="https://github.com/carlaiau/xAsset-Supply">
+                                <a className="button" href="https://github.com/carlaiau/haven-protocol-supply-summary">
                                     <span className="icon">
                                         <img src={github} />
                                     </span>
