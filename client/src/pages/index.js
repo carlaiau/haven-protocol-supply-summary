@@ -9,11 +9,13 @@ const IndexPage = () => {
   const [supply, setSupply] = useState(false)
   const [price, setPrice] = useState(false)
   const [totals, setTotals] = useState(false)
+  const [latestUpdate, setUpdate] = useState()
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   });
+
   const getData = () => {
     Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=haven&vs_currencies=usd%2Cbtc'),
@@ -21,15 +23,18 @@ const IndexPage = () => {
     ]).then(async ([gecko, ec2]) => {
       const a = await gecko.json();
       const b = await ec2.json();
+      var m = new Date();
+      var dateString = m.getHours() + ":" + m.getMinutes() + ":" + m.getSeconds()
       setPrice(a)
       setSupply(b)
-
+      setUpdate(dateString);
 
     })
       .catch((err) => {
         console.log(err);
       });
   }
+
   useEffect(() => {
     getData()
     const interval = setInterval(() => { getData() }, 30000);
@@ -46,114 +51,112 @@ const IndexPage = () => {
     }
   }, [supply, price])
 
-
-
   return (
+
     supply && price && totals && (
       <Layout>
         <SEO title="Home" />
         <Nav />
 
 
-        <StyledHome className="container">
-          <div className="columns">
-            <div className="column">
-              <h1 className="is-size-2">
-                XHV Unit Pricing
+        <StyledHome>
+          <div className="container">
+            <div className="columns">
+              <div className="column">
+                <h1 className="is-size-2">
+                  XHV Unit Pricing
               </h1>
+              </div>
             </div>
-          </div>
 
-          <table className="table big is-size-1">
-            <tbody>
-              <tr>
-                <td>
-                  <strong>
-                    {price.haven.usd}
-                  </strong> USD
+            <table className="table big is-size-1">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>
+                      {price.haven.usd}
+                    </strong> USD
                 </td>
-                <td>
-                  <strong>
-                    {price.haven.btc}
-                  </strong> BTC
+                  <td>
+                    <strong>
+                      {price.haven.btc}
+                    </strong> BTC
                 </td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="columns">
-            <div className="column">
-              <h2 className="is-size-2">
-                Current Ecosystem
+                </tr>
+              </tbody>
+            </table>
+            <div className="columns">
+              <div className="column">
+                <h2 className="is-size-2">
+                  Current Ecosystem
               </h2>
+              </div>
+            </div>
+            <table className="table">
+              <thead>
+                <tr>
+                </tr>
+                <tr>
+                  <th style={{ opacity: 0 }}>XHV/USD</th>
+                  <th>Worth in XHV</th>
+                  <th>Worth in USD</th>
+                  <th>Ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    Held in XHV
+                  </th>
+                  <td>
+                    {parseFloat(supply.xhv).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </td>
+                  <td>
+                    {formatter.format(parseFloat(supply.xhv) * price.haven.usd)}
+                  </td>
+                  <td>
+                    {((parseFloat(supply.xhv) * price.haven.usd) / totals.usd * 100).toFixed(2)}%
+                </td>
+                </tr>
+                <tr>
+                  <th>
+                    Held in xUSD
+                  </th>
+                  <td>
+                    {(parseFloat(supply.usd) / price.haven.usd).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </td>
+                  <td>
+                    {formatter.format(supply.usd)}
+                  </td>
+                  <td>
+                    {(parseFloat(supply.usd) / totals.usd * 100).toFixed(2)}%
+                </td>
+                </tr>
+                <tr>
+                  <th>
+                    Total
+                  </th>
+                  <td>
+                    {totals.xhv.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </td>
+                  <td>
+                    {formatter.format(totals.usd)}
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+            <div className="columns" style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="column is-half">
+                <p className="is-size-6" style={{ marginTop: '30px' }}>
+                  Data from Haven's <a href="https://explorer.havenprotocol.org/supply">block explorer</a> and <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>
+                </p>
+                <p className="is-size-6">Page auto refreshs. Last updated at {latestUpdate}</p>
+                <p className="is-size-1" style={{ marginTop: '20px' }}><span role="img" aria-label="Rocket to moon">🚀</span></p>
+              </div>
             </div>
           </div>
-          <table className="table">
-            <thead>
-              <tr>
-              </tr>
-              <tr>
-                <th></th>
-                <th>Worth in XHV</th>
-                <th>Worth in USD</th>
-                <th>Ratio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  Held in XHV
-                  </th>
-                <td>
-                  {parseFloat(supply.xhv).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                </td>
-                <td>
-                  {formatter.format(parseFloat(supply.xhv) * price.haven.usd)}
-                </td>
-                <td>
-                  {((parseFloat(supply.xhv) * price.haven.usd) / totals.usd * 100).toFixed(2)}%
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Held in xUSD
-                  </th>
-                <td>
-                  {(parseFloat(supply.usd) / price.haven.usd).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                </td>
-                <td>
-                  {formatter.format(supply.usd)}
-                </td>
-                <td>
-                  {(parseFloat(supply.usd) / totals.usd * 100).toFixed(2)}%
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Total
-                  </th>
-                <td>
-                  {totals.xhv.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                </td>
-                <td>
-                  {formatter.format(totals.usd)}
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-          <div className="columns" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="column is-half">
-              <p className="is-size-6" style={{ marginTop: '30px' }}>
-                Data is pulled from Haven's <a href="https://explorer.havenprotocol.org/supply">block explorer</a> and <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>.
-              </p>
-              <p className="is-size-6">This page automatically fetches new data every 30 seconds.</p>
-
-              <p className="is-size-6">This was not created by the core XHV team and is a work in progress. Open to collaborations and feedback.</p>
-              <p className="is-size-1" style={{ marginTop: '20px' }}>🚀</p>
-            </div>
-          </div>
-
         </StyledHome>
 
       </Layout >
@@ -163,7 +166,7 @@ const IndexPage = () => {
 
 const StyledHome = styled('div')`
 background-image: url('https://havenprotocol.org/wp-content/themes/havenprotocol/css/imgs/map.png');
-
+background-size: cover;
 background-repeat: no-repeat;
 background-position: 50% 50%;
 min-height: 100vh;
@@ -188,17 +191,17 @@ table{
   }
   thead{
             th{
-      &:nth-child(2),
-      &:nth-child(3),
-      &:nth-child(4){
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(4){
             border-top: 1px solid #fff;
         border-bottom: 1px solid #fff;
         background: #222;
       }
-      &:nth-child(2){
+      &:nth-of-type(2){
             border-left: 1px solid #fff;
       }
-      &:nth-child(4){
+      &:nth-of-type(4){
             border-right: 1px solid #fff;
       }
     }
@@ -211,12 +214,12 @@ table{
     }
 
     tr{
-      &:nth-child(1) {
+      &:nth-of-type(1) {
           th{
           border-top: 1px solid #fff;
         }
       }
-      &:nth-child(3) {
+      &:nth-of-type(3) {
             th{
             border-bottom: 1px solid #fff;
         }

@@ -7,9 +7,9 @@ export default () => (
     <StyledNav className="navbar is-dark is-fixed-top">
         <div className="container">
             <div className="navbar-menu">
-                <div class="navbar-brand">
+                <div className="navbar-brand">
                     <a className="navbar-item" href="https://havenprotocol.org/">
-                        <img src={white} />
+                        <img src={white} alt='Haven Protocol Supply' />
                     </a>
                 </div>
 
@@ -17,9 +17,9 @@ export default () => (
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             <p className="control">
-                                <a className="button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://xusd.live" target="_blank" href="https://twitter.com/intent/tweet?text=Haven Protocol Supply https://xusd.live $XHV $xUSD&amp;hashtags=privacy,ihaveabank,DeFi&amp;via=HavenXHV">
+                                <a className="button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://xusd.live" target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=Haven Protocol Supply https://xusd.live $XHV $xUSD&amp;hashtags=privacy,ihaveabank,DeFi&amp;via=HavenXHV">
                                     <span className="icon">
-                                        <img src={twitter} />
+                                        <img src={twitter} alt="Tweet" />
                                     </span>
                                     <span>
                                         Tweet
@@ -27,9 +27,9 @@ export default () => (
                                 </a>
                             </p>
                             <p className="control">
-                                <a className="button" href="https://github.com/carlaiau/haven-protocol-supply-summary">
+                                <a className="button" href="https://github.com/carlaiau/haven-protocol-supply-summary" target="_blank" rel="noreferrer">
                                     <span className="icon">
-                                        <img src={github} />
+                                        <img src={github} alt="Visit on Github" />
                                     </span>
                                     <span>Contribute</span>
                                 </a>
