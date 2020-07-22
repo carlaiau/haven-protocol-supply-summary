@@ -152,7 +152,7 @@ const IndexPage = () => {
                 <p className="is-size-6" style={{ marginTop: '30px' }}>
                   Data from Haven's <a href="https://explorer.havenprotocol.org/supply">block explorer</a> and <a href="https://www.coingecko.com/en/coins/haven">CoinGecko</a>
                 </p>
-                <p className="is-size-6">Page auto refreshs. Last updated at {latestUpdate}</p>
+                <p className="is-size-6">Page auto refreshes. Last updated at {latestUpdate}</p>
                 <p className="is-size-1" style={{ marginTop: '20px' }}><span role="img" aria-label="Rocket to moon">🚀</span></p>
               </div>
             </div>
