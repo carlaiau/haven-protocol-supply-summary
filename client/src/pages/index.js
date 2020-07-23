@@ -20,6 +20,8 @@ const IndexPage = () => {
     fetch(process.env.GATSBY_API_URL).then(async res => {
       const { gecko, last_block, yesterday_block } = await res.json()
 
+
+
       setSupply({
         xhv: last_block.xhv_supply,
         usd: last_block.usd_supply,
@@ -233,7 +235,7 @@ const IndexPage = () => {
                     .map((m, i) => (
                       <tr key={'market-' + i}>
                         <th>
-                          <a href={m.trade_url} target="_blank" rel="noreferrer">
+                          <a href={m.market.name == 'TOKOK' && m.target == 'BTC' ? 'https://www.tokok.com/market?symbol=XHV_BTC' : m.trade_url} target="_blank" rel="noreferrer">
                             {m.market.name}
                           </a>
                         </th>
@@ -241,7 +243,11 @@ const IndexPage = () => {
                         <td>{formatter.format(m.converted_volume.usd)}</td>
                         <td>{formatter.format(m.converted_last.usd)}</td>
                         <td>{m.bid_ask_spread_percentage.toFixed(2)}%</td>
-                        <td><a href={m.trade_url} target="_blank" rel="noreferrer">Buy</a></td>
+                        <td><a href={m.market.name == 'TOKOK' && m.target == 'BTC' ? 'https://www.tokok.com/market?symbol=XHV_BTC' : m.trade_url}
+                          target="_blank" rel="noreferrer">
+                          Buy
+                          </a>
+                        </td>
                       </tr>
                     ))
                 }
