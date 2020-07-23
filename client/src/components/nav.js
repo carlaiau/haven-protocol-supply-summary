@@ -1,5 +1,5 @@
 import React from 'react'
-import white from '../images/background-black.svg'
+import square from '../images/square.svg'
 import styled from '@emotion/styled'
 import github from '../images/github.svg'
 import twitter from '../images/twitter.svg'
@@ -9,7 +9,8 @@ export default () => (
             <div className="navbar-menu">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="https://havenprotocol.org/">
-                        <img src={white} alt='Haven Protocol Supply' />
+                        <img src={square} />
+                        <h1>HAVEN</h1>
                     </a>
                 </div>
 
@@ -53,6 +54,7 @@ const StyledNav = styled('nav')`
         }
         .navbar-brand{
             float: left;
+            
         }
         .navbar-end{
             float: right;
@@ -64,8 +66,18 @@ const StyledNav = styled('nav')`
     &.is-dark{
                 background: #222;
     }
-    .navbar-brand img{
-        max-height: initial;
-        max-width: 150px;
+    .navbar-brand{
+        h1{
+                font-size: 22px;
+                font-family: Inter,sans-serif;
+                margin: 0;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+        img{
+            max-height: initial;
+            max-width: 50px;
+        }
     }
 `

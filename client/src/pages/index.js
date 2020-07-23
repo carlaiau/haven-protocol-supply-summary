@@ -231,25 +231,34 @@ const IndexPage = () => {
               </thead>
               <tbody>
                 {
-                  price.tickers.sort((m1, m2) => m1.volume > m2.volume ? -1 : 1)
-                    .map((m, i) => (
-                      <tr key={'market-' + i}>
-                        <th>
-                          <a href={m.market.name == 'TOKOK' && m.target == 'BTC' ? 'https://www.tokok.com/market?symbol=XHV_BTC' : m.trade_url} target="_blank" rel="noreferrer">
-                            {m.market.name}
+                  price.tickers
+                    .sort((m1, m2) => m1.volume > m2.volume ? -1 : 1)
+                    .map((m, i) => {
+                      const url = m.market.name == 'TOKOK' && m.target == 'BTC' ?
+                        'https://www.tokok.com/market?symbol=XHV_BTC' :
+                        m.market.name == 'Bitalong' ? 'https://www.bitalong.com/#/trade?name=xhv_btc' :
+                          m.trade_url
+                      return (
+                        <tr key={'market-' + i}>
+                          <th>
+                            <a href={url} target="_blank" rel="noreferrer">
+                              {m.market.name}
+                            </a>
+                          </th>
+                          <td>{m.target}</td>
+                          <td>{formatter.format(m.converted_volume.usd)}</td>
+                          <td>{formatter.format(m.converted_last.usd)}</td>
+                          <td>{m.bid_ask_spread_percentage.toFixed(2)}%</td>
+                          <td><a href={url}
+                            target="_blank" rel="noreferrer">
+                            Buy
                           </a>
-                        </th>
-                        <td>{m.target}</td>
-                        <td>{formatter.format(m.converted_volume.usd)}</td>
-                        <td>{formatter.format(m.converted_last.usd)}</td>
-                        <td>{m.bid_ask_spread_percentage.toFixed(2)}%</td>
-                        <td><a href={m.market.name == 'TOKOK' && m.target == 'BTC' ? 'https://www.tokok.com/market?symbol=XHV_BTC' : m.trade_url}
-                          target="_blank" rel="noreferrer">
-                          Buy
-                          </a>
-                        </td>
-                      </tr>
-                    ))
+                          </td>
+                        </tr>
+
+                      )
+                    }
+                    )
                 }
               </tbody>
             </table>
