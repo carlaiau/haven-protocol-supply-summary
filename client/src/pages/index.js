@@ -222,7 +222,7 @@ const IndexPage = () => {
             <div className="columns">
               <div className="column">
                 <h2 className="is-size-2">
-                  Where to get
+                  Purchase Haven
                 </h2>
               </div>
             </div>
@@ -241,8 +241,8 @@ const IndexPage = () => {
               <tbody>
                 {
                   price.tickers.sort((m1, m2) => m1.volume > m2.volume ? -1 : 1)
-                    .map(m => (
-                      <tr>
+                    .map((m, i) => (
+                      <tr key={'market-' + i}>
                         <th>
                           <a href={m.trade_url} target="_blank" rel="noreferrer">
                             {m.market.name}
