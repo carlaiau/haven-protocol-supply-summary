@@ -13,7 +13,7 @@ Hosted on Netlify
 ## Server
 Pretty gross. Express app that is downloading the source of the <a href="https://explorer.havenprotocol.org/supply">block explorer</a> and parsing out the table of supply data.
 
-Hosted on EC2, nano instance. Hopefully it doesn't blow up.
+Hosted on EC2, sitting behind nginx caching every minute to prevent continual scraping of explorer.
 
 ## Future Plans
 Work with haven core team on a more refined version, with historical/graphs that actually runs from the blockchain itself rather than sraping.
