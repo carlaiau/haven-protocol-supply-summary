@@ -41,19 +41,8 @@ const IndexPage = () => {
         },
         tickers: gecko.tickers
       })
-
-      console.log(gecko.high_24)
-
-
       var m = new Date();
       setUpdate(m.toLocaleTimeString());
-
-
-      /*
-      setPrice(a)
-      setSupply(b)
-      
-      */
     })
       .catch((err) => {
         console.log(err);
